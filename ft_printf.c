@@ -6,24 +6,18 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:46:39 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/11/15 03:48:49 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/11/15 06:05:26 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_printchar(char c)
-{
-	ft_putchar_fd(c, 1);
-	return (1);
-}
-
 static void	print_arg(va_list argsl, char type, size_t *l)
 {
 	if (type == 'c')
-		l += ft_printchar(va_arg(argsl, int));
+		l += ft_putchar(va_arg(argsl, int));
 	if (type == 's')
-		l += ft_strprint(va_arg(argsl, char *));
+		l += ft_putstr(va_arg(argsl, char *));
 	if (type == 'p')
 		ft_hexprint(va_arg(argsl, size_t), "0123456789ABCDEF", l);
 	if (type == 'd' || type == 'i')
@@ -36,10 +30,10 @@ static void	print_arg(va_list argsl, char type, size_t *l)
 		ft_hexprint(va_arg(argsl, int), "0123456789ABCDEF", l);
 	else
 	{
-		ft_putchar_fd('%', 1);
+		ft_putchar('%');
 		if (!ft_isalpha(type))
 		{
-			ft_putchar_fd(type, 1);
+			ft_putchar(type);
 			l++;
 		}
 		l++;
@@ -63,7 +57,7 @@ int	ft_printf(const char *str, ...)
 			print_arg(argsl, str[++i], &l);
 		else
 		{
-			ft_putchar_fd(str[i], 1);
+			ft_putchar(str[i]);
 			l++;
 		}
 		i++;
