@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 05:53:19 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/11/15 06:33:43 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/11/17 02:09:49 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,9 @@ int	ft_strlen(char *s)
 
 int	ft_putstr(char *s)
 {
-	int	i;
-
-	i = 0;
 	if (!s)
-		return (0);
-	i += write(1, s, ft_strlen(s));
-	return (i);
+		return (write(1, "(null)", 6));
+	return (write(1, s, ft_strlen(s)));
 }
 
 int	ft_isalpha(int c)
@@ -43,18 +39,12 @@ int	ft_isalpha(int c)
 	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 
-int	ft_putnbr(int n)
+int	ft_putnbr(long long n)
 {
-	if (n == -2147483648)
-	{
-		ft_putstr("-2147483648");
-		return (11);
-	}
+	if (n == -9223372036854775807)
+		return (ft_putstr("-9223372036854775807"));
 	if (n < 0)
-	{
-		ft_putchar('-');
-		n *= -1;
-	}
+		return (ft_putchar('-') + ft_putnbr(-n));
 	if (n < 10)
 		return (ft_putchar(n + '0'));
 	return (ft_putnbr(n / 10) + ft_putchar((n % 10) + '0'));

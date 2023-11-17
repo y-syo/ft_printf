@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:46:39 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/11/15 06:05:26 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/11/17 02:26:46 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,27 @@
 static void	print_arg(va_list argsl, char type, size_t *l)
 {
 	if (type == 'c')
-		l += ft_putchar(va_arg(argsl, int));
-	if (type == 's')
-		l += ft_putstr(va_arg(argsl, char *));
-	if (type == 'p')
-		ft_hexprint(va_arg(argsl, size_t), "0123456789ABCDEF", l);
-	if (type == 'd' || type == 'i')
-		l += ft_nbrprint(va_arg(argsl, int));
-	if (type == 'u')
-		l += ft_unbrprint(va_arg(argsl, unsigned int));
-	if (type == 'x')
-		ft_hexprint(va_arg(argsl, int), "0123456789abcdef", l);
-	if (type == 'X')
-		ft_hexprint(va_arg(argsl, int), "0123456789ABCDEF", l);
+		*l += ft_putchar(va_arg(argsl, int));
+	else if (type == 's')
+		*l += ft_putstr(va_arg(argsl, char *));
+	else if (type == 'p')
+		ft_ptrprint(va_arg(argsl, unsigned long long), l);
+	else if (type == 'd' || type == 'i')
+		*l += ft_putnbr(va_arg(argsl, int));
+	else if (type == 'u')
+		*l += ft_putnbr(va_arg(argsl, unsigned int));
+	else if (type == 'x')
+		ft_uhexprint(va_arg(argsl, unsigned int), "0123456789abcdef", l);
+	else if (type == 'X')
+		ft_uhexprint(va_arg(argsl, unsigned int), "0123456789ABCDEF", l);
 	else
 	{
-		ft_putchar('%');
-		if (!ft_isalpha(type))
+		if (type != ' ')
 		{
-			ft_putchar(type);
-			l++;
+			*l += ft_putchar('%');
+			if (!ft_isalpha(type) && type != '%')
+				*l += ft_putchar(type);
 		}
-		l++;
 	}
 }
 
@@ -56,10 +55,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 			print_arg(argsl, str[++i], &l);
 		else
-		{
-			ft_putchar(str[i]);
-			l++;
-		}
+			l += ft_putchar(str[i]);
 		i++;
 	}
 	va_end(argsl);

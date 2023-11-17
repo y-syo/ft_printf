@@ -6,7 +6,7 @@
 #    By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 03:48:58 by mmoussou          #+#    #+#              #
-#    Updated: 2023/11/15 06:06:34 by mmoussou         ###   ########.fr        #
+#    Updated: 2023/11/16 23:39:51 by mmoussou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS =	ft_printf.c \
 
 OBJS = ${SRCS:.c=.o}
 
-INCLUDE = include
+INCLUDE = .
 
 CC = gcc
 
@@ -32,7 +32,7 @@ ${NAME}: ${OBJS}
 	ar rcs ${NAME} ${OBJS}
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o $@
+	${CC} ${CFLAGS} -c $< -o $@ -I ${INCLUDE}
 
 clean:
 	rm -f ${OBJS}
