@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:46:39 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/11/17 02:26:46 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/11/17 04:53:39 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,11 @@ static void	print_arg(va_list argsl, char type, size_t *l)
 		ft_uhexprint(va_arg(argsl, unsigned int), "0123456789abcdef", l);
 	else if (type == 'X')
 		ft_uhexprint(va_arg(argsl, unsigned int), "0123456789ABCDEF", l);
-	else
+	else if (type)
 	{
-		if (type != ' ')
-		{
-			*l += ft_putchar('%');
-			if (!ft_isalpha(type) && type != '%')
-				*l += ft_putchar(type);
-		}
+		*l += ft_putchar('%');
+		if (type != '%')
+			*l += ft_putchar(type);
 	}
 }
 
@@ -56,7 +53,8 @@ int	ft_printf(const char *str, ...)
 			print_arg(argsl, str[++i], &l);
 		else
 			l += ft_putchar(str[i]);
-		i++;
+		if (str[i])
+			i++;
 	}
 	va_end(argsl);
 	return (l);

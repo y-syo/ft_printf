@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 05:53:19 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/11/17 02:09:49 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/11/17 04:08:23 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ int	ft_putstr(char *s)
 	if (!s)
 		return (write(1, "(null)", 6));
 	return (write(1, s, ft_strlen(s)));
-}
-
-int	ft_isalpha(int c)
-{
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 
 int	ft_putnbr(long long n)
