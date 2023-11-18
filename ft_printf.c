@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:46:39 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/11/17 04:53:39 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/11/18 03:15:10 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_printf(const char *str, ...)
 	size_t	l;
 
 	if (!str)
-		return (0);
+		return (-1);
 	va_start(argsl, str);
 	i = 0;
 	l = 0;
