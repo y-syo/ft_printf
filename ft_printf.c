@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 16:46:39 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/11/18 03:15:10 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/11/22 04:32:26 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void	print_arg(va_list argsl, char type, size_t *l)
 		if (type != '%')
 			*l += ft_putchar(type);
 	}
+	else
+		*l = -1;
 }
 
 int	ft_printf(const char *str, ...)

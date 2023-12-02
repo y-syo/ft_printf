@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 03:29:07 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/11/17 04:05:20 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/11/19 00:20:05 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_uhexprint(unsigned long long nbr, char *base, size_t *l)
 	else
 	{
 		ft_uhexprint(nbr / 16, base, l);
-		ft_putchar(base[nbr % 16]);
-		*l += 1;
+		*l += ft_putchar(base[nbr % 16]);
 	}
 }
