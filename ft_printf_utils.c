@@ -6,7 +6,7 @@
 /*   By: mmoussou <mmoussou@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 05:53:19 by mmoussou          #+#    #+#             */
-/*   Updated: 2023/12/02 04:07:36 by mmoussou         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:06:57 by mmoussou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,19 @@ int	ft_putstr(char *s)
 	return (write(1, s, ft_strlen(s)));
 }
 
+/*int	ft_putnbr(long long n)
+{
+	if (n < 10)
+		return (ft_putchar(n + '0'));
+	return (ft_putnbr(n / 10) + ft_putchar((n % 10) + '0'));
+}*/
+
 int	ft_putnbr(long long n)
 {
+	if (n == -9223372036854775807)
+		return (ft_putstr("-9223372036854775807"));
+	if (n < 0)
+		return (ft_putchar('-') + ft_putnbr(-n));
 	if (n < 10)
 		return (ft_putchar(n + '0'));
 	return (ft_putnbr(n / 10) + ft_putchar((n % 10) + '0'));
